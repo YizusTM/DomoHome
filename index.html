@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Domohome Hermosillo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Domohome Hermosillo</title>
 
-  <!-- Fuente y Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-    body {
+    body {
       margin: 0;
       padding: 0;
       font-family: 'Roboto', sans-serif;
-      /* Quita las propiedades de background de aquí */
-      position: relative; /* Necesario para que la imagen de fondo fija se posicione correctamente */
+      position: relative; /* Necesario para que los hijos con position:fixed/absolute se posicionen correctamente */
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -27,33 +25,61 @@
       overflow: hidden; /* Para evitar scrollbars si la imagen es ligeramente más grande */
     }
 
- .background-image {
+    /* IMAGEN DE FONDO */
+    .background-image {
         position: fixed; /* La imagen se fija al viewport */
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Mantén 'cover' si quieres que cubra todo el espacio sin barras */
-                               /* Si quieres que se vea todo el contenido (texto y persona), usa 'contain' y acepta las barras laterales. */
-                               /* Para tu caso, con el texto y la persona en la parte inferior, 'cover' seguirá recortando los lados.
-                                  Si 'contain' no es una opción, considera una imagen de fondo diferente o diseñar el texto del fondo como parte del HTML. */
-        z-index: -2; /* Más bajo que el overlay */
+        object-fit: cover; /* La imagen siempre cubre todo el espacio */
+        z-index: -3; /* La capa más profunda */
     }
 
-     .fondo-overlay {
-        position: fixed; /* O 'absolute' si prefieres que se desplace con el contenido */
+    /* CAPA DE COLOR SÓLIDO SEMITRANSPARENTE */
+    .background-color-overlay {
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.4); /* Oscurece el fondo para que el texto de la tarjeta resalte */
-        z-index: -1; /* Encima de la imagen, debajo de la tarjeta */
+        background-color: #34495e; /* Color oscuro similar al de tu botón web */
+        opacity: 0.8; /* Ajusta este valor (0.0 a 1.0) para controlar la transparencia */
+        z-index: -2; /* Encima de la imagen, debajo del contenido y la tarjeta */
+    }
+
+    /* LOGO SUPERIOR IZQUIERDO */
+    .top-left-logo {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        width: 150px;
+        z-index: 10;
+    }
+
+    /* TEXTO GRANDE A LA IZQUIERDA (si lo haces HTML) */
+    .floating-text {
+        position: fixed;
+        bottom: 5%;
+        left: 5%;
+        z-index: 0; /* Por encima de la imagen y el overlay, debajo de la tarjeta */
+        color: white;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        line-height: 1.2;
+        text-align: left;
+        max-width: 400px;
+    }
+
+    .floating-text p {
+        margin: 0;
+        font-size: 3.5vw;
+        font-weight: bold;
     }
 
     .card {
       position: relative;
-      z-index: 1; /* Asegura que la tarjeta esté encima del overlay y la imagen */
-      background-color: #ffffff;
+      z-index: 1; /* Asegura que la tarjeta esté encima de todo */
+      background-color: #ffffff; /* Fondo blanco OPACO para la tarjeta */
       border-radius: 16px;
       padding: 30px 25px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
@@ -62,85 +88,117 @@
       text-align: center;
     }
 
+    .logo {
+      width: 120px;
+      height: auto;
+      margin: 0 auto 15px;
+    }
 
-    .logo {
-      width: 120px;
-      height: auto;
-      margin: 0 auto 15px;
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    .redes {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .redes a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      color: white;
+      transition: transform 0.2s ease;
+    }
+
+    .redes a:hover {
+      transform: scale(1.05);
+    }
+
+    .instagram { background-color: #e1306c; }
+    .web { background-color: #34495e; }
+
+    footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #999;
+    }
+
+    /* Media Queries (ajusta según sea necesario) */
+    @media (max-width: 992px) {
+        .floating-text {
+            font-size: 2.5vw;
+            bottom: 3%;
+            left: 3%;
+        }
     }
 
-    .imagen-destacada {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      margin-bottom: 20px;
+    @media (max-width: 768px) {
+        .floating-text {
+            font-size: 2em;
+            bottom: 20px;
+            left: 20px;
+            max-width: 90%;
+        }
+        .floating-text p {
+            font-size: 1.5em;
+        }
+        .top-left-logo {
+            width: 100px;
+            top: 10px;
+            left: 10px;
+        }
     }
 
-    h1 {
-      font-size: 24px;
-      margin-bottom: 10px;
-      color: #2c3e50;
+    @media (max-width: 480px) {
+        .floating-text p {
+            font-size: 1.2em;
+        }
     }
-
-    p {
-      color: #555;
-      margin-bottom: 25px;
-    }
-
-    .redes {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .redes a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      text-decoration: none;
-      padding: 12px;
-      border-radius: 8px;
-      font-weight: bold;
-      color: white;
-      transition: transform 0.2s ease;
-    }
-
-    .redes a:hover {
-      transform: scale(1.05);
-    }
-
-    .instagram { background-color: #e1306c; }
-    .web { background-color: #34495e; }
-
-    footer {
-      margin-top: 20px;
-      font-size: 12px;
-      color: #999;
-    }
-  </style>
+  </style>
 </head>
 <body>
-  <div class="fondo-overlay"></div> <!-- Fondo oscuro encima de la imagen -->
+    <img src="https://i.imgur.com/vOUoMyF.jpeg" alt="Fondo Domohome" class="background-image">
 
-  <div class="card">
-    <!-- LOGO -->
-    <img src="https://i.imgur.com/nnO7uBN.png" alt="Logo Domohome" class="logo">
+    <div class="background-color-overlay"></div>
 
-    <h1>Domohome Hermosillo</h1>
-    <p>Expertos en automatización, confort y seguridad para tu hogar u oficina. Atendemos todo Hermosillo, Sonora.</p>
+    <img src="https://i.imgur.com/nnO7uBN.png" alt="Logo Domohome Superior" class="top-left-logo">
 
-    <div class="redes">
-      <a href="https://www.instagram.com/domohome.mx/" class="instagram" target="_blank">
-        <i class="fab fa-instagram"></i> Instagram Oficial
-      </a>
-      <a href="#" class="web" target="_blank">
-        <i class="fas fa-globe"></i> Página Web
-      </a>
+    <div class="floating-text">
+        <p>Tu casa</p>
+        <p>no solo es inteligente.</p>
+        <p>Te entiende.</p>
     </div>
 
-    <footer>&copy; 2025 Domohome Hermosillo</footer>
-  </div>
-</body>
+      <div class="card">
+        <img src="https://i.imgur.com/nnO7uBN.png" alt="Logo Domohome" class="logo">
 
+    <h1>Domohome Hermosillo</h1>
+    <p>Expertos en automatización, confort y seguridad para tu hogar u oficina. Atendemos todo Hermosillo, Sonora.</p>
+
+    <div class="redes">
+      <a href="https://www.instagram.com/domohome.mx/" class="instagram" target="_blank">
+        <i class="fab fa-instagram"></i> Instagram Oficial
+      </a>
+      <a href="#" class="web" target="_blank">
+        <i class="fas fa-globe"></i> Página Web
+      </a>
+    </div>
+
+    <footer>&copy; 2025 Domohome Hermosillo</footer>
+  </div>
+</body>
 </html>
