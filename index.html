@@ -15,31 +15,52 @@
     }
 
     body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-    background: url('https://i.imgur.com/vOUoMyF.jpeg') no-repeat center center;
-    background-attachment: fixed; /* Mantiene la imagen fija al desplazarse */
-    background-size: contain;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      /* Quita las propiedades de background de aquí */
+      position: relative; /* Necesario para que la imagen de fondo fija se posicione correctamente */
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden; /* Para evitar scrollbars si la imagen es ligeramente más grande */
+    }
 
-
-
-    .card {
-      position: relative;
-      z-index: 1;
-      background-color: #ffffff;
-      border-radius: 16px;
-      padding: 30px 25px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      max-width: 450px;
-      width: 90%;
-      text-align: center;
+ .background-image {
+        position: fixed; /* La imagen se fija al viewport */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Mantén 'cover' si quieres que cubra todo el espacio sin barras */
+                               /* Si quieres que se vea todo el contenido (texto y persona), usa 'contain' y acepta las barras laterales. */
+                               /* Para tu caso, con el texto y la persona en la parte inferior, 'cover' seguirá recortando los lados.
+                                  Si 'contain' no es una opción, considera una imagen de fondo diferente o diseñar el texto del fondo como parte del HTML. */
+        z-index: -2; /* Más bajo que el overlay */
     }
+
+     .fondo-overlay {
+        position: fixed; /* O 'absolute' si prefieres que se desplace con el contenido */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4); /* Oscurece el fondo para que el texto de la tarjeta resalte */
+        z-index: -1; /* Encima de la imagen, debajo de la tarjeta */
+    }
+
+    .card {
+      position: relative;
+      z-index: 1; /* Asegura que la tarjeta esté encima del overlay y la imagen */
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 30px 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      max-width: 450px;
+      width: 90%;
+      text-align: center;
+    }
 
 
     .logo {
