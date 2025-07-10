@@ -1,249 +1,118 @@
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
-
-  <meta charset="UTF-8" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <title>Domohome Hermosillo</title>
-
-
-
-  <!-- Fuente y Font Awesome -->
-
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
-
-
-  <style>
-
-    * {
-
-      box-sizing: border-box;
-
-    }
-
-
-
-    body {
-
-    margin: 0;
-
-    padding: 0;
-
-    font-family: 'Roboto', sans-serif;
-
-    background: url('https://i.imgur.com/vOUoMyF.jpeg') no-repeat center center;
-
-    background-attachment: fixed; /* Mantiene la imagen fija al desplazarse */
-
-    background-size: cover;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    min-height: 100vh;
-
-}
-
-
-
-
-
-
-
-    .card {
-
-      position: relative;
-
-      z-index: 1;
-
-      background-color: #ffffff;
-
-      border-radius: 16px;
-
-      padding: 30px 25px;
-
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-
-      max-width: 450px;
-
-      width: 90%;
-
-      text-align: center;
-
-    }
-
-
-
-
-
-    .logo {
-
-      width: 120px;
-
-      height: auto;
-
-      margin: 0 auto 15px;
-
-    }
-
-
-
-    .imagen-destacada {
-
-      width: 100%;
-
-      height: auto;
-
-      border-radius: 12px;
-
-      margin-bottom: 20px;
-
-    }
-
-
-
-    h1 {
-
-      font-size: 24px;
-
-      margin-bottom: 10px;
-
-      color: #2c3e50;
-
-    }
-
-
-
-    p {
-
-      color: #555;
-
-      margin-bottom: 25px;
-
-    }
-
-
-
-    .redes {
-
-      display: flex;
-
-      flex-direction: column;
-
-      gap: 12px;
-
-    }
-
-
-
-    .redes a {
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      gap: 10px;
-
-      text-decoration: none;
-
-      padding: 12px;
-
-      border-radius: 8px;
-
-      font-weight: bold;
-
-      color: white;
-
-      transition: transform 0.2s ease;
-
-    }
-
-
-
-    .redes a:hover {
-
-      transform: scale(1.05);
-
-    }
-
-
-
-    .instagram { background-color: #e1306c; }
-
-    .web { background-color: #34495e; }
-
-
-
-    footer {
-
-      margin-top: 20px;
-
-      font-size: 12px;
-
-      color: #999;
-
-    }
-
-  </style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Domohome Hermosillo</title>
+
+  <!-- Fuente y Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background: url('https://i.imgur.com/vOUoMyF.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+
+    .card {
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 30px 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 450px;
+      width: 90%;
+      text-align: center;
+    }
+
+    .logo {
+      width: 120px;
+      height: auto;
+      margin: 0 auto 15px;
+    }
+
+    .imagen-destacada {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    .redes {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .redes a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      color: white;
+      transition: transform 0.2s ease;
+    }
+
+    .redes a:hover {
+      transform: scale(1.05);
+    }
+
+    .instagram { background-color: #e1306c; }
+    .web { background-color: #34495e; }
+
+    footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
 </head>
-
 <body>
-
-  <div class="fondo-overlay"></div> <!-- Fondo oscuro encima de la imagen -->
-
-
-
-  <div class="card">
-
-    <!-- LOGO -->
-
-    <img src="https://i.imgur.com/nnO7uBN.png" alt="Logo Domohome" class="logo">
+  <div class="card">
+    <!-- Logo (puedes cambiar esta URL por tu logo) -->
+    <img src="https://i.imgur.com/nnO7uBN.png" alt="Logo Domohome" class="logo">
 
 
+    <h1>Domohome Hermosillo</h1>
+    <p>Expertos en automatización, confort y seguridad para tu hogar u oficina. Atendemos todo Hermosillo, Sonora.</p>
 
-    <h1>Domohome Hermosillo</h1>
+    <div class="redes">
+      <a href="https://www.instagram.com/domohome.mx/" class="instagram" target="_blank">
+        <i class="fab fa-instagram"></i> Instagram Oficial
+      </a>
+      <a href="#" class="web" target="_blank">
+        <i class="fas fa-globe"></i> Página Web
+      </a>
+    </div>
 
-    <p>Expertos en automatización, confort y seguridad para tu hogar u oficina. Atendemos todo Hermosillo, Sonora.</p>
-
-
-
-    <div class="redes">
-
-      <a href="https://www.instagram.com/domohome.mx/" class="instagram" target="_blank">
-
-        <i class="fab fa-instagram"></i> Instagram Oficial
-
-      </a>
-
-      <a href="#" class="web" target="_blank">
-
-        <i class="fas fa-globe"></i> Página Web
-
-      </a>
-
-    </div>
-
-
-
-    <footer>&copy; 2025 Domohome Hermosillo</footer>
-
-  </div>
-
+    <footer>&copy; 2025 Domohome Hermosillo</footer>
+  </div>
 </body>
-
-
-
 </html>
