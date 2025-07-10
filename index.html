@@ -1,72 +1,130 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Domohome Hermosillo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Domohome Hermosillo</title>
 
-  <!-- Fuente y Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
-  <style>
+  <style>
     * {
       box-sizing: border-box;
     }
-
+    
     body {
       margin: 0;
       padding: 0;
       font-family: 'Roboto', sans-serif;
-      background: url('https://i.imgur.com/vOUoMyF.jpeg') no-repeat center center fixed;
-      background-size: cover;
+      /* Eliminamos el background de aquí */
+      position: relative; /* Necesario para el posicionamiento de los hijos fijos/absolutos */
+      min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura del viewport */
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      overflow: hidden; /* Evita barras de desplazamiento no deseadas */
     }
-
-
+    
+    /* IMAGEN DE FONDO */
+    .background-image {
+      position: fixed; /* Fija la imagen al viewport */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Asegura que la imagen cubra todo el espacio sin distorsión */
+      z-index: -3; /* La capa más baja */
+    }
+    
+    /* CAPA DE COLOR SEMITRANSPARENTE (SIMILAR AL FONDO QUE QUERÍAS) */
+    .background-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(52, 73, 94, 0.7); /* Color similar al botón web con 70% de opacidad */
+      z-index: -2; /* Encima de la imagen, debajo del contenido */
+    }
+    
+    /* LOGO SUPERIOR IZQUIERDO */
+    .top-left-logo {
+      position: fixed;
+      top: 20px; /* Distancia desde el borde superior */
+      left: 20px; /* Distancia desde el borde izquierdo */
+      width: 150px; /* Tamaño del logo */
+      z-index: 10; /* Asegura que esté por encima de todo */
+    }
+    
+    /* TEXTO GRANDE FLOTANTE (ej: "Tu casa no solo es inteligente. Te entiende.") */
+    .floating-text {
+      position: fixed;
+      bottom: 5%; /* 5% desde el borde inferior del viewport */
+      left: 5%; /* 5% desde el borde izquierdo del viewport */
+      z-index: 0; /* Por encima de la imagen y el overlay, pero debajo de la tarjeta */
+      color: white; /* Color del texto */
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra para mejor legibilidad */
+      line-height: 1.2; /* Espaciado entre líneas */
+      text-align: left;
+      max-width: 400px; /* Limita el ancho del texto */
+    }
+    
+    .floating-text p {
+      margin: 0; /* Elimina el margen por defecto de los párrafos */
+      font-size: 3.5vw; /* Tamaño de fuente responsivo basado en el ancho del viewport */
+      font-weight: bold;
+    }
+    
+    
     .card {
-      background-color: #ffffff;
+      position: relative; /* Importante para el z-index */
+      z-index: 1; /* Asegura que la tarjeta esté encima de la imagen y el overlay */
+      /* Fondo transparente para la tarjeta */
+      background-color: rgba(255, 255, 255, 0.15); /* Blanco con 15% de opacidad para ver el fondo */
       border-radius: 16px;
       padding: 30px 25px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Sombra para que destaque un poco */
       max-width: 450px;
       width: 90%;
       text-align: center;
+      /* Colores de texto para la tarjeta que contrasten con el fondo */
+      color: white; /* Por defecto para el texto general de la tarjeta */
     }
-
+    
     .logo {
       width: 120px;
       height: auto;
       margin: 0 auto 15px;
     }
-
+    
+    /* Si la imagen destacada es parte de la imagen de fondo, puedes eliminar esta clase */
     .imagen-destacada {
       width: 100%;
       height: auto;
       border-radius: 12px;
       margin-bottom: 20px;
+      /* Si esta imagen también debe ser transparente, usa rgba en su background-color si es un div,
+         o ajusta su opacidad si es una img. Si no existe, puedes eliminar esta regla. */
     }
-
+    
     h1 {
       font-size: 24px;
       margin-bottom: 10px;
-      color: #2c3e50;
+      color: white; /* Color blanco para el título de la tarjeta */
     }
-
+    
     p {
-      color: #555;
+      color: #e0e0e0; /* Un gris muy claro para el párrafo de la tarjeta */
       margin-bottom: 25px;
     }
-
+    
     .redes {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
-
+    
     .redes a {
       display: flex;
       align-items: center;
@@ -79,40 +137,82 @@
       color: white;
       transition: transform 0.2s ease;
     }
-
+    
     .redes a:hover {
       transform: scale(1.05);
     }
-
-    .instagram { background-color: #e1306c; }
-    .web { background-color: #34495e; }
-
+    
+    .instagram { background-color: #e1306c; } /* Mantienen su color sólido para ser botones */
+    .web { background-color: #34495e; } /* Mantienen su color sólido para ser botones */
+    
     footer {
       margin-top: 20px;
       font-size: 12px;
-      color: #999;
+      color: #cccccc; /* Un gris claro para el footer de la tarjeta */
+    }
+    
+    /* MEDIA QUERIES PARA RESPONSIVIDAD */
+    @media (max-width: 992px) {
+      .floating-text {
+        font-size: 2.5vw;
+        bottom: 3%;
+        left: 3%;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .floating-text {
+        font-size: 2em; /* Puedes usar 'em' o 'rem' para un control más fijo en móviles */
+        bottom: 20px;
+        left: 20px;
+        max-width: 90%;
+      }
+      .floating-text p {
+        font-size: 1.5em; /* Ajusta aquí también */
+      }
+      .top-left-logo {
+        width: 100px; /* Logo más pequeño en móviles */
+        top: 10px;
+        left: 10px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .floating-text p {
+        font-size: 1.2em;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <!-- Logo (puedes cambiar esta URL por tu logo) -->
-    <img src="https://i.imgur.com/nnO7uBN.png" alt="Logo Domohome" class="logo">
+    <img src="https://i.imgur.com/vOUoMyF.jpeg" alt="Fondo Domohome" class="background-image">
 
+    <div class="background-overlay"></div>
 
-    <h1>Domohome Hermosillo</h1>
-    <p>Expertos en automatización, confort y seguridad para tu hogar u oficina. Atendemos todo Hermosillo, Sonora.</p>
+    <img src="https://i.imgur.com/nnO7uBN.png" alt="Logo Domohome Superior" class="top-left-logo">
 
-    <div class="redes">
-      <a href="https://www.instagram.com/domohome.mx/" class="instagram" target="_blank">
-        <i class="fab fa-instagram"></i> Instagram Oficial
-      </a>
-      <a href="#" class="web" target="_blank">
-        <i class="fas fa-globe"></i> Página Web
-      </a>
+    <div class="floating-text">
+        <p>Tu casa</p>
+        <p>no solo es inteligente.</p>
+        <p>Te entiende.</p>
     </div>
 
-    <footer>&copy; 2025 Domohome Hermosillo</footer>
-  </div>
+      <div class="card">
+        <img src="https://i.imgur.com/nnO7uBN.png" alt="Logo Domohome" class="logo">
+
+    <h1>Domohome Hermosillo</h1>
+    <p>Expertos en automatización, confort y seguridad para tu hogar u oficina. Atendemos todo Hermosillo, Sonora.</p>
+
+    <div class="redes">
+      <a href="https://www.instagram.com/domohome.mx/" class="instagram" target="_blank">
+        <i class="fab fa-instagram"></i> Instagram Oficial
+      </a>
+      <a href="#" class="web" target="_blank">
+        <i class="fas fa-globe"></i> Página Web
+      </a>
+    </div>
+
+    <footer>&copy; 2025 Domohome Hermosillo</footer>
+  </div>
 </body>
 </html>
