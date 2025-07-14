@@ -1,218 +1,158 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DomoHome Hermosillo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartDeals MX</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- Meta para redes sociales -->
+  <meta property="og:title" content="SmartDeals MX - Descuentos y tecnología">
+  <meta property="og:description" content="Promociones especiales, contacto directo y productos destacados.">
+  <meta property="og:image" content="https://i.imgur.com/nnO7uBN.png">
+  <meta name="theme-color" content="#111111">
 
-  <style>
+  <link rel="icon" href="https://i.imgur.com/nnO7uBN.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
     * {
       box-sizing: border-box;
     }
-    
+
     body {
       margin: 0;
       padding: 0;
       font-family: 'Roboto', sans-serif;
-      /* Eliminamos el background de aquí */
-      position: relative; /* Necesario para el posicionamiento de los hijos fijos/absolutos */
-      min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura del viewport */
+      background-color: #111;
+      color: #fff;
       display: flex;
-      align-items: center;
       justify-content: center;
-      overflow: hidden; /* Evita barras de desplazamiento no deseadas */
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
     }
-    
-    /* IMAGEN DE FONDO */
-    .background-image {
-      position: fixed; /* Fija la imagen al viewport */
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Asegura que la imagen cubra todo el espacio sin distorsión */
-      z-index: -3; /* La capa más baja */
-    }
-    
-    /* CAPA DE COLOR SEMITRANSPARENTE (SIMILAR AL FONDO QUE QUERÍAS) */
-    .background-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(52, 73, 94, 0.7); /* Color similar al botón web con 70% de opacidad */
-      z-index: -2; /* Encima de la imagen, debajo del contenido */
-    }
-    
-    /* LOGO SUPERIOR IZQUIERDO */
-    .top-left-logo {
-      position: fixed;
-      top: 20px; /* Distancia desde el borde superior */
-      left: 20px; /* Distancia desde el borde izquierdo */
-      width: 150px; /* Tamaño del logo */
-      z-index: 10; /* Asegura que esté por encima de todo */
-    }
-    
-    /* TEXTO GRANDE FLOTANTE (ej: "Tu casa no solo es inteligente. Te entiende.") */
-    .floating-text {
-      position: fixed;
-      bottom: 5%; /* 5% desde el borde inferior del viewport */
-      left: 5%; /* 5% desde el borde izquierdo del viewport */
-      z-index: 0; /* Por encima de la imagen y el overlay, pero debajo de la tarjeta */
-      color: white; /* Color del texto */
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra para mejor legibilidad */
-      line-height: 1.2; /* Espaciado entre líneas */
-      text-align: left;
-      max-width: 400px; /* Limita el ancho del texto */
-    }
-    
-    .floating-text p {
-      margin: 0; /* Elimina el margen por defecto de los párrafos */
-      font-size: 3.5vw; /* Tamaño de fuente responsivo basado en el ancho del viewport */
-      font-weight: bold;
-    }
-    
-    
+
     .card {
-      position: relative; /* Importante para el z-index */
-      z-index: 1; /* Asegura que la tarjeta esté encima de la imagen y el overlay */
-      /* Fondo transparente para la tarjeta */
-      background-color: rgba(255, 255, 255, 0.15); /* Blanco con 15% de opacidad para ver el fondo */
-      border-radius: 16px;
-      padding: 30px 25px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Sombra para que destaque un poco */
-      max-width: 450px;
-      width: 90%;
-      text-align: center;
-      /* Colores de texto para la tarjeta que contrasten con el fondo */
-      color: white; /* Por defecto para el texto general de la tarjeta */
-    }
-    
-    .logo {
-      width: 120px;
-      height: auto;
-      margin: 0 auto 15px;
-    }
-    
-    /* Si la imagen destacada es parte de la imagen de fondo, puedes eliminar esta clase */
-    .imagen-destacada {
+      max-width: 480px;
       width: 100%;
-      height: auto;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      /* Si esta imagen también debe ser transparente, usa rgba en su background-color si es un div,
-         o ajusta su opacidad si es una img. Si no existe, puedes eliminar esta regla. */
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      text-align: center;
     }
-    
-    h1 {
-      font-size: 24px;
+
+    .card h1 {
+      font-size: 26px;
       margin-bottom: 10px;
-      color: white; /* Color blanco para el título de la tarjeta */
     }
-    
-    p {
-      color: #e0e0e0; /* Un gris muy claro para el párrafo de la tarjeta */
-      margin-bottom: 25px;
+
+    .card p {
+      color: #ccc;
+      margin-bottom: 20px;
+      font-size: 16px;
     }
-    
-    .redes {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 30px 0 10px;
+      color: #00ffd5;
     }
-    
-    .redes a {
-      display: flex;
+
+    .product-placeholder {
+      background: rgba(255,255,255,0.07);
+      border: 1px dashed #555;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .button {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 10px;
-      text-decoration: none;
-      padding: 12px;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 20px;
+      border: none;
       border-radius: 8px;
       font-weight: bold;
-      color: white;
-      transition: transform 0.2s ease;
-    }
-    
-    .redes a:hover {
-      transform: scale(1.05);
-    }
-    
-    .instagram { background-color: #e1306c; } /* Mantienen su color sólido para ser botones */
-    .web { background-color: #34495e; } /* Mantienen su color sólido para ser botones */
-    
-    footer {
+      text-decoration: none;
+      transition: background-color 0.3s;
       margin-top: 20px;
+    }
+
+    .button:hover {
+      background-color: #1ebd5a;
+    }
+
+    .form-simulado {
+      margin-top: 30px;
+      text-align: left;
+    }
+
+    .form-simulado input,
+    .form-simulado textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .form-simulado button {
+      background: #00ffd5;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .form-simulado button:hover {
+      background: #00c4a7;
+    }
+
+    footer {
       font-size: 12px;
-      color: #cccccc; /* Un gris claro para el footer de la tarjeta */
-    }
-    
-    /* MEDIA QUERIES PARA RESPONSIVIDAD */
-    @media (max-width: 992px) {
-      .floating-text {
-        font-size: 2.5vw;
-        bottom: 3%;
-        left: 3%;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .floating-text {
-        font-size: 2em; /* Puedes usar 'em' o 'rem' para un control más fijo en móviles */
-        bottom: 20px;
-        left: 20px;
-        max-width: 90%;
-      }
-      .floating-text p {
-        font-size: 1.5em; /* Ajusta aquí también */
-      }
-      .top-left-logo {
-        width: 100px; /* Logo más pequeño en móviles */
-        top: 10px;
-        left: 10px;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .floating-text p {
-        font-size: 1.2em;
-      }
+      color: #888;
+      margin-top: 30px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-    <img src="https://i.imgur.com/vOUoMyF.jpeg" alt="Fondo Domohome" class="background-image">
 
-    <div class="background-overlay"></div>
+  <div class="card">
+    <h1>SmartDeals MX</h1>
+    <p>Descubre productos exclusivos con hasta <strong>50% de descuento</strong> y contáctanos directamente desde aquí.</p>
 
-    <img src="https://i.imgur.com/nnO7uBN.png" alt="Logo Domohome Superior" class="top-left-logo">
+    <div class="section-title">🛍 Productos destacados</div>
+    <div class="product-placeholder">Producto 1 - Descuento activo</div>
+    <div class="product-placeholder">Producto 2 - Disponible próximamente</div>
+    <div class="product-placeholder">Producto 3 - Oferta limitada</div>
 
-    <div class="floating-text">
-        <p>Tu casa</p>
-        <p>no solo es inteligente.</p>
-        <p>Te entiende.</p>
+    <a href="https://wa.me/526622386469?text=Hola%2C%20vi%20tu%20tarjeta%20digital%20y%20me%20interesa%20más%20información" class="button" target="_blank">
+      <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+    </a>
+
+    <div class="form-simulado">
+      <div class="section-title">✉️ Déjanos tu mensaje</div>
+      <input type="text" placeholder="Tu nombre" disabled />
+      <input type="email" placeholder="Tu correo" disabled />
+      <textarea rows="3" placeholder="Tu mensaje" disabled></textarea>
+      <button disabled>Enviar</button>
+      <p style="font-size: 12px; color: #666; margin-top: 10px;">* Formulario en construcción. Pronto podrás enviar mensajes directamente.</p>
     </div>
 
-      <div class="card">
-        <img src="https://i.imgur.com/nnO7uBN.png" alt="Logo Domohome" class="logo">
+    <footer>&copy; 2025 SmartDeals MX · Todos los derechos reservados</footer>
+  </div>
 
-    <h1>DomoHome Hermosillo</h1>
-    <p>Expertos en automatización, confort y seguridad para tu hogar u oficina.</p>
-
-    <div class="redes">
-      <a href="https://www.instagram.com/domohome.mx/" class="instagram" target="_blank">
-        <i class="fab fa-instagram"></i> Instagram Oficial
-      </a>
-      <a href="https://domohome.mx/" class="web" target="_blank">
-        <i class="fas fa-globe"></i> Página Web
-      </a>
-    </div>
-
-    <footer>&copy; 2025 DomoHome Hermosillo</footer>
-  </div>
 </body>
 </html>
